@@ -10,9 +10,9 @@ class App extends React.Component {
     };
   }
 
-  onChange = (event, { newValue }) => {
+  onChange = (event) => {
     this.setState({
-      value: newValue
+      value: event.target.value
     });
   };
   
@@ -29,11 +29,14 @@ class App extends React.Component {
   };
 
   render() {
-    // const { value, suggestions } = this.state;
-
+    const { value } = this.state;
+    console.log(value)
     return (
       <div>
-        AUTO COMPLETE TEXT INPUT
+        <p>AUTO COMPLETE TEXT INPUT</p>
+        <div className='auto-text-field'>
+          <input type="text" id="auto-text" name="auto-text" onChange={(e)=> this.onChange(e)}></input>
+        </div>
       </div>
     );
   }
