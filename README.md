@@ -1,19 +1,33 @@
 # search_completion
 A simple program to autocomplete searches based on strength of previous searches.
 
+---
 
-# Prereqs
-nvm and node:
-
-Installing nvm:
+# Pre-Requisites
+1. Install nvm
+```
 brew install nvm 
+```
 
-Installing node:
+2. Install node
+```
 brew install node@14
+```
 
+---
 
+# Quick Start
+1. Start up the project
+```
+npm start
+```
+2. Navigate in web-browser to http://localhost:3000 
 
-# Getting Started with Create React App
+---
+
+# Frontend Boilerplate
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
