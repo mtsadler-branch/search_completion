@@ -2,6 +2,17 @@
 A simple program to autocomplete searches based on strength of previous searches.
 
 
+# Prereqs
+nvm and node:
+
+Installing nvm:
+brew install nvm 
+
+Installing node:
+brew install node@14
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
