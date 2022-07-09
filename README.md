@@ -7,11 +7,17 @@ A simple program to autocomplete searches based on strength of previous searches
 1. Install nvm
 ```
 brew install nvm 
+brew install npm
 ```
 
 2. Install node
 ```
 brew install node@14
+```
+3. Install modules
+```
+npm cache clear --force
+npm install
 ```
 
 ---
