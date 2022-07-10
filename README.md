@@ -3,8 +3,8 @@ A simple program to autocomplete searches based on strength of previous searches
 
 ---
 
-# Pre-Requisites
-1. Install nvm
+# Quick Start
+1. Install npm/nvm
 ```
 brew install nvm 
 brew install npm
@@ -19,17 +19,18 @@ brew install node@14
 npm cache clear --force
 npm install
 ```
-
----
-
-# Quick Start
-1. Start up the project
+4. Start up the project in your local web-browser.
 ```
 npm start
 ```
-2. Navigate in web-browser to http://localhost:3000 
-
+5. If it doesn't automatically open, navigate in web-browser to http://localhost:3000
 ---
+
+To try autocomplete against shakespears work try:
+```
+source setup.sh
+python3 backend/helpers.py --prefix sho
+```
 
 # Frontend Boilerplate
 

@@ -8,10 +8,17 @@ fi
 
 # Activate virtual environment, if one isn't active
 if [ -z "$VIRTUAL_ENV" ]; then
-    echo "Starting Virtual Environment..."
+    echo "Activating Virtual Environment..."
     . .venv/bin/activate
 else
-    echo -e "Using active Virtual Environment: $VIRTUAL_ENV/"
+    echo -e "Deactivating Virtual Environment: $VIRTUAL_ENV/"
+    deactivate
+    echo "Activating Virtual Environment..."
+    . .venv/bin/activate
 fi
 
+# Install PyPi packages (python requirements)
 pip3 install -Ir requirements.txt
+
+# Test out backend
+python3 backend/helpers.py --prefix sm
