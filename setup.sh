@@ -21,4 +21,9 @@ fi
 pip3 install -Ir requirements.txt
 
 # Test out backend
-python3 backend/helpers.py --prefix sm
+python3 backend/main.py &
+
+sleep 10
+
+curl http://127.0.0.1:7000/prefix/h
+
