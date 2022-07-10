@@ -1,3 +1,5 @@
+import argparse
+
 def get_results(prefix, word_counts, limit=5):
     """
     Fetch the top 'limit' words from dataset, starting with prefix.
@@ -42,12 +44,24 @@ def count_words_in_file(file_name):
     return word_counts
 
 
-sample_file = "data/sample_data/shakespear.txt"
-shakespear_word_count = count_words_in_file(sample_file)
+# Default variables
+sample_prefix = "dr"
+sample_word_counts = count_words_in_file("data/sample_data/shakespear.txt")
+sample_limit = 10
 
-user_input = "dr"
 
-results = get_results(prefix=user_input, word_counts=shakespear_word_count, limit=10)
+# Argument Parser
+parser = argparse.ArgumentParser(description="Parses details about what game data to load.")
+parser.add_argument("--prefix", dest="prefix", help="The prefix to recommend words for", default=sample_prefix)
+parser.add_argument("--limit", dest="limit", help="How many top results to return", default=sample_limit)
+parser.add_argument("--word_counts", dest="word_counts", help="Mapping of words to counts", default=sample_word_counts)
 
+# Parse Arguments
+args = parser.parse_args()
+
+# Lookup top words in mapping
+results = get_results(prefix=args.prefix, word_counts=args.word_counts, limit=args.limit)
+
+print(f"Prefix: '{args.prefix}', Limit: {args.limit}.")
 for item in results:
     print(f"{item}\t({results[item]})")
