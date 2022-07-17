@@ -18,19 +18,23 @@ const AutoTextComplete = () => {
 }
 
   return (
-    <div className='auto-text-dropdown-container'>
-      <h2>Auto text complete input</h2>
-      <div className='auto-text-field'>
-        <input type="text" id="auto-text" name="auto-text" onChange={(e)=> onChange(e)}></input>
-        {inputText && <div className='auto-text-field-dropdown'>
-          <ul className='dropdown-items'>
-            {DATA.map((option, index)=> {
-                    return (
-                      renderList(option, index)
-                    )
-                  })}
-          </ul>
-        </div>}
+    <div>
+      <div className='header'>
+        <h2>Auto text complete input</h2>
+      </div>
+      <div className='auto-text-dropdown-container'>
+        <div className='auto-text-field'>
+          <input type="text" id="auto-text" name="auto-text" onChange={(e)=> onChange(e)}></input>
+          {inputText && <div className='auto-text-field-dropdown'>
+            <ul className='dropdown-items'>
+              {DATA.map((option, index)=> {
+                      return (
+                        renderList(option, index)
+                      )
+                    })}
+            </ul>
+          </div>}
+        </div>
       </div>
     </div>
   );

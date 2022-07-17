@@ -1,5 +1,13 @@
+.header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .auto-text-dropdown-container{
-  margin-left: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .auto-text-field {
