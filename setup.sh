@@ -20,5 +20,11 @@ fi
 # Install PyPi packages (python requirements)
 pip3 install -Ir requirements.txt
 
-# Test out backend
-python3 backend/helpers.py --prefix sm
+# Spin up back-end
+python3 backend/main.py &
+
+# Test back-end
+sleep 3
+echo "Running 'curl http://127.0.0.1:7000/prefix/h'"
+curl http://127.0.0.1:7000/prefix/h
+
