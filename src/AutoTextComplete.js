@@ -1,12 +1,29 @@
 import './auto-text-complete.css';
 import React, { useState } from 'react';
-import { DATA } from './Constants.js'
+import fetch from 'node-fetch';
+import { DATA } from './Constants.js';
 
 const AutoTextComplete = () => {
   const [inputText, setInputText] = useState('')
+  const [words, setWords] = useState({})
 
   const onChange = (event) => {
-    setInputText(event.target.value)
+    const { value } = event.target
+    setInputText(value)
+    if (value) {
+      try {
+        setTimeout(() => {
+          console.log('Fetching words...')
+          fetch('')
+          .then(res => res.json)
+          .then(json => {
+            setWords(json.parse())
+          })
+        }, 500)
+      } catch(error) {
+        console.log(error);
+      }
+    }
   };
 
   const renderList = (option, index) => {
