@@ -1,11 +1,11 @@
 import './auto-text-complete.css';
 import React, { useState } from 'react';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
 import { DATA } from './Constants.js';
 
 const AutoTextComplete = () => {
   const [inputText, setInputText] = useState('')
-  const [words, setWords] = useState({})
+  // const [words, setWords] = useState({})
 
   const onChange = (event) => {
     const { value } = event.target
@@ -14,10 +14,11 @@ const AutoTextComplete = () => {
       try {
         setTimeout(() => {
           console.log('Fetching words...')
-          fetch('')
+          fetch(`http://127.0.0.1:7000/prefix/${value}`/*, { mode: 'no-cors'}*/)
           .then(res => res.json)
           .then(json => {
-            setWords(json.parse())
+            console.log(json)
+            // setWords(json.parse())
           })
         }, 500)
       } catch(error) {
