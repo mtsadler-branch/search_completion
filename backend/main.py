@@ -1,8 +1,11 @@
 from flask import *
+from flask_cors import CORS
+
 from helpers import get_results
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/prefix/<prefix>")
 def get_words(prefix):
