@@ -33,7 +33,7 @@ ul {
   width: 300px;
   position: absolute;
   list-style: none;
-  height: 200px;
+  height: 100px;
   overflow-x: hidden;
   overflow-y: scroll;
   border-radius: 5px;
@@ -47,6 +47,6 @@ li {
 }
 
 li > label {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: bold;
 }
