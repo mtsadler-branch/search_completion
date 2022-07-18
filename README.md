@@ -18,14 +18,16 @@ brew install node@14
 npm cache clear --force
 npm install
 ```
-4. Start the front-end
-```
-npm start
-```
-5. In a new terminal, start the back-end
+4. In a new terminal, start the back-end
 ```
 source setup.sh
 ```
+
+5. Start the front-end
+```
+npm start
+```
+
 6. In a new terminal, test the back-end is running
 ```
 curl http://127.0.0.1:7000/prefix/sho
