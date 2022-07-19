@@ -14,5 +14,5 @@ def get_words(prefix):
 
 if __name__ == '__main__':
     app.debug = True
-    # initialize_sqlite_db()
+    initialize_sqlite_db()
     app.run(host='127.0.0.1', port=5000)

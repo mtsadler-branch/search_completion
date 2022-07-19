@@ -26,13 +26,15 @@ def count_words_in_file(file_name):
                     word_counts[word] = 2
     return word_counts
 
+
 def initialize_sqlite_db():
     import sqlite3
     import pandas as pd
     words = count_words_in_file("data/sample_data/shakespear.txt")
-    dataframe = pd.DataFrame.from_dict(data=words.items())
+    df = pd.DataFrame.from_dict(data=words.items())
     db = sqlite3.connect("my_local.db")
-    dataframe.to_sql(name="bag_of_words", con=db)
+    df.to_sql(name="bag_of_words", con=db, if_exists='replace')
+
 
 def get_results(
     prefix, limit=5,
