@@ -15,7 +15,7 @@ const AutoTextComplete = () => {
       try {
         setTimeout(() => {
           console.log('Fetching words...')
-          fetch(`http://127.0.0.1:7000/prefix/${value}`, { mode: 'cors'})
+          fetch(`http://127.0.0.1:5000/prefix/${value}`, { mode: 'cors'})
           .then(res => res.json())
           .then(data => {
             let tempWords = []
