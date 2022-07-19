@@ -42,7 +42,7 @@ const AutoTextComplete = () => {
   return (
     <div>
       <div className='header'>
-        <h2>Auto text complete input</h2>
+        <h2>Shakespearean Auto-Complete</h2>
       </div>
       <div className='auto-text-dropdown-container'>
         <div className='auto-text-field'>

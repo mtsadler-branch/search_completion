@@ -26,6 +26,6 @@ python3 backend/main.py &
 
 # Test back-end
 sleep 3
-echo "Running 'curl http://127.0.0.1:7000/prefix/h'"
-curl http://127.0.0.1:7000/prefix/h
+echo "Running 'curl http://0.0.0.0:5000/prefix/h'"
+curl http://0.0.0.0:5000/prefix/h
 

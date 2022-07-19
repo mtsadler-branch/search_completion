@@ -20,6 +20,7 @@ def count_words_in_file(file_name):
                 line.replace(",", "").replace("'", "").replace(".", "").lower().split()
             )
             for word in list_of_words:
+                word = clean_alphabetic_token(token=word)
                 if word in word_counts:
                     word_counts[word] = word_counts[word] + 1
                 else:
@@ -36,36 +37,38 @@ def initialize_sqlite_db():
     df.to_sql(name="bag_of_words", con=db, if_exists='replace')
 
 
-def get_results(
-    prefix, limit=5,
-):
+def clean_alphabetic_token(token):
+    """
+    Casts string to lowercase, and removes non-alphabetic chars.
+
+    :param token: the input token
+    :return:
+        The transformed token
+    """
+    transformed_token = ''.join([i for i in token.lower() if i.isalpha()])
+    return transformed_token
+
+
+def get_results(prefix, limit=5):
     """
     Fetch the top 'limit' words from dataset, starting with prefix.
 
     :param prefix: The start of the word
-    :param word_counts: a word to count mapping
     :param limit: number of results to return
 
     :return:
         mapping of top words and their count
     """
-    import logging
     import sqlite3
     import pandas as pd
+    prefix = clean_alphabetic_token(token=prefix)
     db = sqlite3.connect("my_local.db")
     sql = f'SELECT * FROM bag_of_words where "0" like "{prefix}%" ORDER BY 1 DESC LIMIT {limit}'
     df = pd.read_sql_query(sql, db)
     word_counts = df.to_dict()
     counts = word_counts["index"].values()
     words = word_counts["0"].values()
-    word_map = zip(words, counts)
-    top_results = {}
-    for word, count in word_map:
-        if word.startswith(prefix):
-            top_results[word] = count
-            limit = limit - 1
-            if limit == 0:
-                break
+    top_results = dict(zip(words, counts))
     return top_results
 
 
@@ -99,5 +102,5 @@ def main():
 
 
 if __name__ == "__main__":
-    # initialize_sqlite_db()
+    initialize_sqlite_db()
     main()
