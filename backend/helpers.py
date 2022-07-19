@@ -26,9 +26,16 @@ def count_words_in_file(file_name):
                     word_counts[word] = 2
     return word_counts
 
+def initialize_sqlite_db():
+    import sqlite3
+    import pandas as pd
+    words = count_words_in_file("data/sample_data/shakespear.txt")
+    dataframe = pd.DataFrame.from_dict(data=words.items())
+    db = sqlite3.connect("my_local.db")
+    dataframe.to_sql(name="bag_of_words", con=db)
 
 def get_results(
-    prefix, limit=5, word_counts=count_words_in_file("data/sample_data/shakespear.txt")
+    prefix, limit=5,
 ):
     """
     Fetch the top 'limit' words from dataset, starting with prefix.
@@ -40,12 +47,18 @@ def get_results(
     :return:
         mapping of top words and their count
     """
+    import logging
+    import sqlite3
+    import pandas as pd
+    db = sqlite3.connect("my_local.db")
+    sql = f'SELECT * FROM bag_of_words where "0" like "{prefix}%" ORDER BY 1 DESC LIMIT {limit}'
+    df = pd.read_sql_query(sql, db)
+    word_counts = df.to_dict()
+    counts = word_counts["index"].values()
+    words = word_counts["0"].values()
+    word_map = zip(words, counts)
     top_results = {}
-    word_counts = {
-        k: v
-        for k, v in sorted(word_counts.items(), key=lambda item: item[1], reverse=True)
-    }
-    for word, count in word_counts.items():
+    for word, count in word_map:
         if word.startswith(prefix):
             top_results[word] = count
             limit = limit - 1
@@ -84,4 +97,5 @@ def main():
 
 
 if __name__ == "__main__":
+    # initialize_sqlite_db()
     main()
