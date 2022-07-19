@@ -88,3 +88,6 @@ yarn-error.log*
 .idea
 
 # VSCode files
+
+# Local Database
+my_local.db

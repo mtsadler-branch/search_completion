@@ -1,7 +1,7 @@
 from flask import *
 from flask_cors import CORS
 
-from helpers import get_results, initialize_sqlite_db
+from helpers import get_results
 
 
 app = Flask(__name__)
