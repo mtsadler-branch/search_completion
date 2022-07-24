@@ -7,9 +7,13 @@ from helpers import get_results
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/prefix/<prefix>")
-def get_words(prefix):
-    results = get_results(prefix=prefix)
+@app.route("/prefix/<prefix>/")
+@app.route('/prefix/<prefix>/<limit>')
+def get_words(prefix, limit=None):
+    if limit:
+        results = get_results(prefix=prefix, limit=limit)
+    else:
+        results = get_results(prefix=prefix)
     return results
 
 if __name__ == '__main__':

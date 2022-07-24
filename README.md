@@ -30,7 +30,7 @@ npm start
 
 6. In a new terminal, test the back-end is running
 ```
-curl http://127.0.0.1:5000/prefix/sho
+curl http://127.0.0.1:5000/prefix/fl/7
 # note if this doesnt work on mac, you may need to disable airplay.
 ```
 7. Now that both services are running, navigate in web-browser to http://localhost:3000
