@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Create virtual environment, if needed
 if [ ! -d ".venv/" ]; then
     echo "Installing virutalenv..."
@@ -9,12 +11,12 @@ fi
 # Activate virtual environment, if one isn't active
 if [ -z "$VIRTUAL_ENV" ]; then
     echo "Activating Virtual Environment..."
-    . .venv/bin/activate
+    /bin/bash .venv/bin/activate
 else
     echo -e "Deactivating Virtual Environment: $VIRTUAL_ENV/"
     deactivate
     echo "Activating Virtual Environment..."
-    . .venv/bin/activate
+    /bin/bash .venv/bin/activate
 fi
 
 # Install PyPi packages (python requirements)
@@ -23,6 +25,7 @@ pip3 install -Ir requirements.txt
 # Spin up back-end
 python3 backend/helpers.py
 python3 backend/main.py &
+disown %1
 
 # Test back-end
 sleep 3
