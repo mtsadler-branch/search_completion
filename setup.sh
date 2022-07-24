@@ -24,10 +24,10 @@ pip3 install -Ir requirements.txt
 
 # Spin up back-end
 python3 backend/helpers.py
-python3 backend/main.py &
+python3 backend/main.py
 
 # Test back-end
-sleep 3
-echo "Try running 'curl http://0.0.0.0:5000/prefix/ha/3'"
-curl http://0.0.0.0:5000/prefix/ha/3
+# sleep 3
+# echo "Try running 'curl http://0.0.0.0:5000/prefix/ha/3'"
+# curl http://0.0.0.0:5000/prefix/ha/3
 
