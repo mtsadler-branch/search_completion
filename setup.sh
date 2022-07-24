@@ -11,12 +11,12 @@ fi
 # Activate virtual environment, if one isn't active
 if [ -z "$VIRTUAL_ENV" ]; then
     echo "Activating Virtual Environment..."
-    /bin/bash .venv/bin/activate
+    . .venv/bin/activate
 else
     echo -e "Deactivating Virtual Environment: $VIRTUAL_ENV/"
     deactivate
     echo "Activating Virtual Environment..."
-    /bin/bash .venv/bin/activate
+    . .venv/bin/activate
 fi
 
 # Install PyPi packages (python requirements)
@@ -28,6 +28,6 @@ python3 backend/main.py &
 
 # Test back-end
 sleep 3
-echo "Running 'curl http://0.0.0.0:5000/prefix/ha/3'"
+echo "Try running 'curl http://0.0.0.0:5000/prefix/ha/3'"
 curl http://0.0.0.0:5000/prefix/ha/3
 
