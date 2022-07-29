@@ -1,6 +1,10 @@
 # search_completion
 A simple program to autocomplete searches based on what Shakespeare would write.
 
+---  
+# Try it out  
+Visit http://search.notincluded.org in your web-browser.  
+
 ---
 
 # Quick Start
