@@ -24,7 +24,7 @@ pip3 install -Ir requirements.txt
 
 # Spin up back-end
 python3 backend/helpers.py
-nohup python3 backend/main.py > log.txt 2>&1 &
+nohup python3 backend/main.py > logs.txt 2>&1 & disown
 
 # Test back-end
 # sleep 3
