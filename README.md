@@ -22,8 +22,8 @@ npm start
 3. In a new terminal, test the back-end is running
 ```
 curl http://127.0.0.1:5001/prefix/fl/7
-
 ```
+  
 4. Now that both services are running, navigate in web-browser to http://localhost:3000
 ---
 
