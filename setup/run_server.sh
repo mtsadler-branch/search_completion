@@ -2,7 +2,7 @@ echo "Startiing Backend"
 
 fuser -k 3000/tcp
 sleep 2
-fuser -k 5000/tcp
+fuser -k 5001/tcp
 sleep 2
 . .venv/bin/activate
 sleep 5

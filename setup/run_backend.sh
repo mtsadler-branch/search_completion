@@ -28,6 +28,6 @@ python3 backend/main.py & disown
 
 # Test back-end
 # sleep 3
-# echo "Try running 'curl http://0.0.0.0:5000/prefix/ha/3'"
-# curl http://0.0.0.0:5000/prefix/ha/3
+# echo "Try running 'curl http://0.0.0.0:5001/prefix/ha/3'"
+# curl http://0.0.0.0:5001/prefix/ha/3
 

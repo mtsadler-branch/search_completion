@@ -3,7 +3,9 @@ import argparse
 # Default variables
 sample_prefix = "dr"
 sample_limit = 10
-
+{
+    "happy": 5,
+}
 
 def count_words_in_file(file_name):
     """
