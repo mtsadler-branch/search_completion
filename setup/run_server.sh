@@ -1,4 +1,4 @@
-echo "Startiing Backend"
+echo "Starting Backend"
 
 fuser -k 3000/tcp
 sleep 2
