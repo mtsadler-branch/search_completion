@@ -20,7 +20,7 @@ else
 fi
 
 # Install PyPi packages (python requirements)
-pip3 install -Ir requirements.txt
+pip3 install -r requirements.txt
 
 # Spin up back-end
 python3 backend/helpers.py
