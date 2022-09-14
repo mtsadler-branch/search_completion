@@ -1,11 +1,9 @@
 import argparse
+import requests
 
 # Default variables
 sample_prefix = "dr"
 sample_limit = 10
-{
-    "happy": 5,
-}
 
 def count_words_in_file(file_name):
     """
@@ -77,7 +75,7 @@ def get_results(prefix, limit=5):
 def main():
     # Argument Parser
     parser = argparse.ArgumentParser(
-        description="Parses details about what game data to load."
+        description="Params for passing prefix and max number of results."
     )
     parser.add_argument(
         "--prefix",
@@ -85,13 +83,6 @@ def main():
         help="The prefix to recommend words for",
         default=sample_prefix,
     )
-    parser.add_argument(
-        "--limit",
-        dest="limit",
-        help="How many top results to return",
-        default=sample_limit,
-    )
-
     # Parse Arguments
     args = parser.parse_args()
 
@@ -102,6 +93,12 @@ def main():
     for item in results:
         print(f"{item}\t({results[item]})")
 
+    get_word_details(word="umpire", api_key=args.api_key)
+
+def get_word_details(word, api_key):
+    url = f"https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={api_key}"
+    response = requests.get(url)
+    return response.json()
 
 if __name__ == "__main__":
     initialize_sqlite_db()
