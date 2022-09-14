@@ -83,6 +83,13 @@ def main():
         help="The prefix to recommend words for",
         default=sample_prefix,
     )
+    parser.add_argument(
+        "--limit",
+        dest="limit",
+        help="How many top results to return",
+        default=sample_limit,
+    )
+
     # Parse Arguments
     args = parser.parse_args()
 
@@ -92,8 +99,6 @@ def main():
     print(f"Prefix: '{args.prefix}', Limit: {args.limit}.")
     for item in results:
         print(f"{item}\t({results[item]})")
-
-    get_word_details(word="umpire", api_key=args.api_key)
 
 def get_word_details(word, api_key):
     url = f"https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={api_key}"
