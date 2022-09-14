@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 const AutoTextComplete = () => {
   const [inputText, setInputText] = useState('')
   const [words, setWords] = useState([])
+  const [synonyms, setSynonyms] = useState('')
 
   const onChange = (event) => {
     const { value } = event.target
@@ -14,7 +15,7 @@ const AutoTextComplete = () => {
     if (value) {
       try {
         setTimeout(() => {
-          console.log('Fetching words...')
+          console.log('Fetching Suggestions for Prefix...')
           fetch(`http://localhost:5001/prefix/${value}/3`, { mode: 'cors'})
           .then(res => res.json())
           .then(data => {
@@ -31,10 +32,27 @@ const AutoTextComplete = () => {
     }
   };
 
+
+  const onClick = (event) => {
+    const { textContent } = event.target
+    if (textContent) {
+      try {
+          console.log('Fetching Description for Word...')
+          fetch(`http://localhost:5001/details/${textContent}`, { mode: 'cors'})
+          .then(res => res.json())
+          .then(data => {
+            setSynonyms(JSON.stringify(data))
+          })
+      } catch(error) {
+        console.log(error);
+      }
+    }
+  };
+
   const renderList = (word, index) => {
     return (
-      <li className={'dropdown-item'} name={word} value={word} key={index}>
-          <label className='dropdown-item-label'>{word}</label>
+      <li className={'dropdown-item'} value={word} key={index} onClick={(e)=> onClick(e)}>
+        {word}
       </li>
     )
 }
@@ -59,6 +77,9 @@ const AutoTextComplete = () => {
             </ul>
           </div>}
         </div>
+      </div>
+      <div className='footer'>
+        { synonyms }
       </div>
     </div>
   );

@@ -38,6 +38,7 @@ source setup/run_server.sh
 3. In a new terminal, test the back-end is running:  
 ```
 curl http://127.0.0.1:5001/prefix/fl/7
+curl http://127.0.0.1:5001/details/hungry
 ```
   
 ---
