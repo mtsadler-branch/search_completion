@@ -36,4 +36,5 @@ jobs:
         source setup/run_server.sh & disown
         echo "Sleeping for 30 seconds..."
         sleep 30
+        exit 0
         EOT
