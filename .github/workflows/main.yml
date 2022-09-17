@@ -27,6 +27,7 @@ jobs:
       run: |
         cat <<'EOT' | ssh -T -i $SSH_KEY_PATH ubuntu@ec2-3-137-87-165.us-east-2.compute.amazonaws.com  /bin/bash
         cd search_completion/
+        export DICT_API_KEY="$DICT_API_KEY"
         echo -e "Current Directory: $(pwd)"
         echo "Running git stash:"
         git stash
