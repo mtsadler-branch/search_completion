@@ -20,11 +20,11 @@ else
 fi
 
 # Install PyPi packages (python requirements)
-pip3 install -Ir requirements.txt
+pip3 install -r requirements.txt
 
 # Spin up back-end
 python3 backend/helpers.py
-python3 backend/main.py & disown
+python3 backend/main.py --api_key "$DICT_API_KEY" & disown
 
 # Test back-end
 # sleep 3

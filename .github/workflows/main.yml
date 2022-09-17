@@ -1,0 +1,37 @@
+name: Deploy Code Changes
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  deploy:
+    env:
+      SSH_PRIVATE_KEY: ${{secrets.SSH_KEY}}
+      SSH_KNOWN_HOSTS: ${{secrets.KNOWN_HOSTS}}
+      DICT_API_KEY: ${{secrets.DICT_API_KEY}}
+      SSH_KEY_PATH: ${{ github.workspace }}/notincluded.org.pem
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Create SSH key
+      shell: bash
+      run: |
+        mkdir -p ~/.ssh/
+        echo "$SSH_PRIVATE_KEY" > "$SSH_KEY_PATH"
+        sudo chmod 600 "$SSH_KEY_PATH"
+        echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+    - name: Deploy Updates to Website
+      shell: bash
+      run: |
+        cat <<'EOT' | ssh -T -i $SSH_KEY_PATH ubuntu@ec2-3-137-87-165.us-east-2.compute.amazonaws.com  /bin/bash
+        cd search_completion/
+        echo -e "Current Directory: $(pwd)"
+        echo "Running git stash:"
+        git stash
+        echo "Running git pull:"
+        git pull
+        echo "Running run_server.sh:"
+        source setup/run_server.sh
+        EOT
