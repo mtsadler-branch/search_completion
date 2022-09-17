@@ -34,7 +34,5 @@ jobs:
         git pull
         echo "Running run_server.sh:"
         source setup/run_server.sh & disown
-        echo "Sleeping for 30 seconds..."
-        sleep 30
-        exit 0
+        exit
         EOT

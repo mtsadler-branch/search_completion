@@ -12,25 +12,10 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^3.0.1"
   },
-  "devServer": {
-    "compress": true,
-    "port": 3000,
-    "allowedHosts": [
-      "search.notincluded.org",
-      "notincluded.org",
-      ".notincluded.org",
-      "127.0.0.1",
-      "3.137.87.165",
-      ".amazonaws.com",
-      "ec2-3-137-87-165.us-east-2.compute.amazonaws.com",
-      "localhost"
-     ]
-  },
   "engines": {
     "npm": ">=8.0.0",
     "node": ">=18"
   },
-  "proxy": "http://127.0.0.1:5001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
