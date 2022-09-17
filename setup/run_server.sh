@@ -5,7 +5,7 @@ echo "Killing any process on port 5001"
 fuser -k 5001/tcp
 sleep 2
 echo "Starting Backend"
-source setup/run_backend.sh
+source setup/run_backend.sh & disown
 sleep 2
 echo "Starting Frontend"
 npm install
