@@ -12,6 +12,11 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^3.0.1"
   },
+  "devServer": {
+    "compress": true,
+    "disableHostCheck": true,
+    "allowedHosts": "all"
+  },
   "engines": {
     "npm": ">=8.0.0",
     "node": ">=18"
