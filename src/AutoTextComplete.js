@@ -19,7 +19,7 @@ const AutoTextComplete = () => {
             try {
                 setTimeout(() => {
                     console.log('Fetching Suggestions for Prefix...')
-                    fetch(`http://localhost:5001/prefix/${value}/3`, {mode: 'no-cors'})
+                    fetch(`http://3.137.87.165:5001/prefix/${value}/3`, {mode: 'cors'})
                         .then(res => res.json())
                         .then(data => {
                             let tempWords = []
@@ -42,7 +42,7 @@ const AutoTextComplete = () => {
             try {
                 console.log('Fetching Description for Word...')
                 setLookup(textContent)
-                fetch(`http://localhost:5001/details/${textContent}`, {mode: 'no-cors'})
+                fetch(`http://3.137.87.165:5001/details/${textContent}`, {mode: 'cors'})
                     .then(res => res.json())
                     .then(data => {
                         console.log(JSON.stringify(data));
