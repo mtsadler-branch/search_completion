@@ -1,5 +1,7 @@
 import './auto-text-complete.css';
 import React, { useState } from 'react';
+import _ from 'lodash';
+
 
 const AutoTextComplete = () => {
   const [inputText, setInputText] = useState('')
@@ -41,7 +43,8 @@ const AutoTextComplete = () => {
           fetch(`http://localhost:5001/details/${textContent}`, { mode: 'cors'})
           .then(res => res.json())
           .then(data => {
-            setSynonyms(JSON.stringify(data))
+            console.log(JSON.stringify(data));
+            setSynonyms(data);
           })
       } catch(error) {
         console.log(error);
@@ -79,11 +82,45 @@ const AutoTextComplete = () => {
         </div>
       </div>
       <div className='footer'>
-        { synonyms }
+        {synonyms && typeof(synonyms[0]) == "string" ?
+            <div>
+              <h4>(Not found) Suggestions:</h4>
+            </div>
+            : synonyms ?
+            <div>
+              <h3>Details:</h3>
+              <hr style={{ height : "20px", backgroundColor : "#30799B" }}></hr>
+            </div>
+            :
+            <div></div>
+        }
+        {synonyms && typeof(synonyms[0]) == "string" ? synonyms.map((key, i) => {
+          return (
+          <p key={i}>
+          <span>- {key}</span>
+          </p>
+          )})
+         : (synonyms) ? synonyms.map((sense) => {
+          console.log("Word:" + sense.hwi.hw);
+          console.log("Part of Speech:" + sense.fl);
+          console.log("Definition:" + sense.shortdef);
+          console.log("Synonyms:\n\t" + _.join(sense.meta.syns[0], ', '));
+          return (
+          <div key={sense.hwi.hw}>
+          <p><b>{sense.hwi.hw}</b> ({sense.fl})</p>
+          <p><i>{sense.shortdef}</i></p>
+          <p>Synonyms:</p>
+          <p>{_.join(sense.meta.syns[0], ', ')}</p>
+            <hr style={{ height : "10px", backgroundColor : "#30799B" }}></hr>
+          </div>
+          )
+        })
+        :
+          <div></div>
+        }
       </div>
     </div>
   );
-
 }
 
 export default AutoTextComplete;
