@@ -19,7 +19,7 @@ const AutoTextComplete = () => {
             try {
                 setTimeout(() => {
                     console.log('Fetching Suggestions for Prefix...')
-                    fetch(`http://127.0.0.1:5001/prefix/${value}/3`, {mode: 'cors'})
+                    fetch(`prefix/${value}/3`, {mode: 'cors'})
                         .then(res => res.json())
                         .then(data => {
                             let tempWords = []
@@ -42,7 +42,7 @@ const AutoTextComplete = () => {
             try {
                 console.log('Fetching Description for Word...')
                 setLookup(textContent)
-                fetch(`http://127.0.0.1:5001/details/${textContent}`, {mode: 'cors'})
+                fetch(`details/${textContent}`, {mode: 'cors'})
                     .then(res => res.json())
                     .then(data => {
                         // console.log(JSON.stringify(data));
@@ -60,7 +60,7 @@ const AutoTextComplete = () => {
             try {
                 console.log('Fetching Description for Word...')
                 setLookup(value)
-                fetch(`http://127.0.0.1:5001/details/${value}`, {mode: 'cors'})
+                fetch(`details/${value}`, { mode: 'cors'})
                     .then(res => res.json())
                     .then(data => {
                         // console.log(JSON.stringify(data));
@@ -87,7 +87,11 @@ const AutoTextComplete = () => {
             </div>
             <div className='auto-text-dropdown-container'>
                 <div className='auto-text-field'>
-                    <input type="text" id="auto-text" name="auto-text" onChange={(e) => onChange(e)} onKeyDown={(e) => { if (e.key === 'Enter'){onEnter(e)}}}></input>
+                    <input type="text" id="auto-text" name="auto-text" onChange={(e) => onChange(e)} onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            onEnter(e)
+                        }
+                    }}></input>
                     {inputText && <div className='auto-text-field-dropdown'>
                         <ul className='dropdown-items'>
                             {
