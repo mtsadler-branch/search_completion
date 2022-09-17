@@ -19,7 +19,7 @@ const AutoTextComplete = () => {
             try {
                 setTimeout(() => {
                     console.log('Fetching Suggestions for Prefix...')
-                    fetch(`http://3.137.87.165:5001/prefix/${value}/3`, {mode: 'cors'})
+                    fetch(`http://localhost:5001/prefix/${value}/3`, {mode: 'cors'})
                         .then(res => res.json())
                         .then(data => {
                             let tempWords = []
@@ -42,10 +42,28 @@ const AutoTextComplete = () => {
             try {
                 console.log('Fetching Description for Word...')
                 setLookup(textContent)
-                fetch(`http://3.137.87.165:5001/details/${textContent}`, {mode: 'cors'})
+                fetch(`http://localhost:5001/details/${textContent}`, {mode: 'cors'})
                     .then(res => res.json())
                     .then(data => {
-                        console.log(JSON.stringify(data));
+                        // console.log(JSON.stringify(data));
+                        setSynonyms(data);
+                    })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    };
+
+    const onEnter = (event) => {
+        const {value} = event.target
+        if (value) {
+            try {
+                console.log('Fetching Description for Word...')
+                setLookup(value)
+                fetch(`http://localhost:5001/details/${value}`, {mode: 'cors'})
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(JSON.stringify(data));
                         setSynonyms(data);
                     })
             } catch (error) {
@@ -69,7 +87,7 @@ const AutoTextComplete = () => {
             </div>
             <div className='auto-text-dropdown-container'>
                 <div className='auto-text-field'>
-                    <input type="text" id="auto-text" name="auto-text" onChange={(e) => onChange(e)}></input>
+                    <input type="text" id="auto-text" name="auto-text" onChange={(e) => onChange(e)} onKeyDown={(e) => { if (e.key === 'Enter'){onEnter(e)}}}></input>
                     {inputText && <div className='auto-text-field-dropdown'>
                         <ul className='dropdown-items'>
                             {
@@ -104,13 +122,13 @@ const AutoTextComplete = () => {
                     <div>
                         <p>{_.join(synonyms, ', ')} </p>
                     </div>
-                    : (synonyms) ? synonyms.map((sense) => {
-                            console.log("Word:" + sense.hwi.hw);
-                            console.log("Part of Speech:" + sense.fl);
-                            console.log("Definition:" + sense.shortdef);
-                            console.log("Synonyms:\n\t" + _.join(sense.meta.syns[0], ', '));
+                    : (synonyms) ? synonyms.map((sense, id) => {
+                            // console.log("Word:" + sense.hwi.hw);
+                            // console.log("Part of Speech:" + sense.fl);
+                            // console.log("Definition:" + sense.shortdef);
+                            // console.log("Synonyms:\n\t" + _.join(sense.meta.syns[0], ', '));
                             return (
-                                <div key={sense.hwi.hw}>
+                                <div key={id}>
                                     <p><b>{sense.hwi.hw}</b> ({sense.fl})</p>
                                     <p><i>Definition</i>: {sense.shortdef}</p>
                                     <p><i>Synonyms</i>: {_.join(sense.meta.syns[0], ', ')}</p>
