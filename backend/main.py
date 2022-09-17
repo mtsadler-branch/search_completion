@@ -20,7 +20,7 @@ def get_words(prefix, limit=None):
 
 @app.route("/details/<word>")
 def get_details(word):
-    return jsonify(get_word_details(word=word, api_key=api_key))
+    return get_word_details(word=word, api_key=api_key)
 
 
 if __name__ == '__main__':

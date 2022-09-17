@@ -100,10 +100,14 @@ def main():
     for item in results:
         print(f"{item}\t({results[item]})")
 
+
 def get_word_details(word, api_key):
+    import logging
     url = f"https://www.dictionaryapi.com/api/v3/references/thesaurus/json/{word}?key={api_key}"
-    response = requests.get(url)
-    return response.json()
+    response = requests.get(url).json()
+    logging.error(f"API Response: {response}")
+    return response
+
 
 if __name__ == "__main__":
     initialize_sqlite_db()
