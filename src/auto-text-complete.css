@@ -4,6 +4,10 @@
   justify-content: center;
 }
 
+.footer{
+  margin-top: 50px;
+}
+
 .auto-text-dropdown-container{
   display: flex;
   align-items: center;
