@@ -46,4 +46,10 @@ curl http://127.0.0.1:5001/details/hungry
 4. Now that both services are running, navigate in web-browser to http://localhost:3000  
   
 ---
+
+5. Once you've tested the site, you can kill the webserver and backend by running:
+````
+kill -9 $(lsof -ti:3000)
+kill -9 $(lsof -ti:5001)
+````
   
