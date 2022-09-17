@@ -15,7 +15,11 @@
   "devServer": {
     "compress": true,
     "disableHostCheck": true,
-    "allowedHosts": "all"
+    "allowedHosts": [
+      "search.notincluded.com",
+      "notincluded.com",
+      "127.0.0.1"
+     ]
   },
   "engines": {
     "npm": ">=8.0.0",
