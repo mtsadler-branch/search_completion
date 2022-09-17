@@ -24,7 +24,7 @@ pip3 install -r requirements.txt
 
 # Spin up back-end
 python3 backend/helpers.py
-python3 backend/main.py --api_key "$DICT_API_KEY" & disown
+nohup python3 backend/main.py --api_key "$DICT_API_KEY" > backend.log 2>&1 & disown
 
 # Test back-end
 # sleep 3

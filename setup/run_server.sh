@@ -5,8 +5,8 @@ echo "Killing any process on port 5001"
 fuser -k 5001/tcp
 sleep 2
 echo "Starting Backend"
-source setup/run_backend.sh & disown
+source setup/run_backend.sh
 sleep 2
 echo "Starting Frontend"
 npm install
-npm start & disown
+nohup npm start > frontend.log 2>&1 & disown

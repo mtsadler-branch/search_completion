@@ -33,6 +33,6 @@ jobs:
         echo "Running git pull:"
         git pull
         echo "Running run_server.sh:"
-        source setup/run_server.sh & disown
+        source setup/run_server.sh
         exit
         EOT
