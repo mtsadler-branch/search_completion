@@ -19,7 +19,7 @@ const AutoTextComplete = () => {
             try {
                 setTimeout(() => {
                     console.log('Fetching Suggestions for Prefix...')
-                    fetch(`http://3.137.87.165:5001/prefix/${value}/3`, {mode: 'cors'})
+                    fetch(`http://localhost:5001/prefix/${value}/3`, {mode: 'cors'})
                         .then(res => res.json())
                         .then(data => {
                             let tempWords = []
@@ -42,7 +42,7 @@ const AutoTextComplete = () => {
             try {
                 console.log('Fetching Description for Word...')
                 setLookup(textContent)
-                fetch(`http://3.137.87.165:5001/details/${textContent}`, {mode: 'cors'})
+                fetch(`http://localhost:5001/details/${textContent}`, {mode: 'cors'})
                     .then(res => res.json())
                     .then(data => {
                         // console.log(JSON.stringify(data));
@@ -60,7 +60,7 @@ const AutoTextComplete = () => {
             try {
                 console.log('Fetching Description for Word...')
                 setLookup(value)
-                fetch(`http://3.137.87.165:5001/details/${value}`, { mode: 'cors'})
+                fetch(`http://localhost:5001/details/${value}`, {mode: 'cors'})
                     .then(res => res.json())
                     .then(data => {
                         // console.log(JSON.stringify(data));
@@ -105,22 +105,25 @@ const AutoTextComplete = () => {
                     </div>}
                 </div>
             </div>
-            <div style={{paddingTop: "120px"}}>
-                <hr style={{height: "3px", backgroundColor: "black"}}></hr>
-            </div>
             <div className='footer'>
                 {synonyms && typeof (synonyms[0]) == "string" ?
                     <div>
-                        <h3>Couldn't find definition for '{lookup}'.</h3>
+                        <h3 style={{color: "red"}}>Couldn't find definition for '{lookup}'.</h3>
                         <h2>Similar words:</h2>
                     </div>
-                    : synonyms ?
+                    : synonyms && synonyms[0].meta && synonyms[0].meta.id === lookup ?
                         <div>
                             <h2>{lookup}'s Definition:</h2>
                             <hr style={{height: "3px", backgroundColor: "black"}}></hr>
                         </div>
-                        :
-                        <div></div>
+                        : synonyms && synonyms[0].meta ?
+                            <div>
+                                <h3 style={{color: "red"}}>Couldn't find word '{lookup}'.</h3>
+                                <h2>But here's {synonyms[0].meta.id}'s Definition:</h2>
+                                <hr style={{height: "3px", backgroundColor: "black"}}></hr>
+                            </div>
+                            :
+                            <div></div>
                 }
                 {synonyms && typeof (synonyms[0]) == "string" ?
                     <div>
