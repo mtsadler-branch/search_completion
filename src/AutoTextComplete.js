@@ -111,7 +111,7 @@ const AutoTextComplete = () => {
                         <h3 style={{color: "red"}}>Couldn't find definition for '{lookup}'.</h3>
                         <h2>Similar words:</h2>
                     </div>
-                    : synonyms && synonyms[0].meta && synonyms[0].meta.id === lookup ?
+                    : synonyms && synonyms[0].meta && synonyms[0].meta.id.toLowerCase() === lookup.toLowerCase() ?
                         <div>
                             <h2>{lookup}'s Definition:</h2>
                             <hr style={{height: "3px", backgroundColor: "black"}}></hr>
