@@ -75,7 +75,7 @@ const AutoTextComplete = () => {
     const renderList = (word, index) => {
         return (
             <li className={'dropdown-item'} value={word} key={index} onClick={(e) => onClick(e)}>
-                {word}
+                <label>{word}</label>
             </li>
         )
     }
@@ -105,7 +105,7 @@ const AutoTextComplete = () => {
                     </div>}
                 </div>
             </div>
-            <div style={{paddingTop: "100px"}}>
+            <div style={{paddingTop: "120px"}}>
                 <hr style={{height: "3px", backgroundColor: "black"}}></hr>
             </div>
             <div className='footer'>
